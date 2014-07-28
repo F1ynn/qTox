@@ -16,6 +16,7 @@
 
 #include "chatform.h"
 #include "friend.h"
+#include "smileypack.h"
 #include "widget/friendwidget.h"
 #include "widget/widget.h"
 #include "widget/filetransfertwidget.h"
@@ -207,11 +208,13 @@ void ChatForm::show(Ui::Widget &ui)
 void ChatForm::setName(QString newName)
 {
     name->setText(newName);
+    name->setToolTip(newName); // for overlength names
 }
 
 void ChatForm::setStatusMessage(QString newMessage)
 {
     statusMessage->setText(newMessage);
+    statusMessage->setToolTip(newMessage); // for overlength messsages
 }
 
 void ChatForm::onSendTriggered()
@@ -236,6 +239,7 @@ void ChatForm::addFriendMessage(QString message)
 
 void ChatForm::addMessage(QString author, QString message, QString date)
 {
+    message = SmileyPack::getInstance().replaceEmoticons(message);
     addMessage(new QLabel(author), new QLabel(message), new QLabel(date));
 }
 

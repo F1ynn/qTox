@@ -20,10 +20,10 @@
 #    See the COPYING file for more details.
 
 
-QT       += core gui network multimedia multimediawidgets
+QT       += core gui network multimedia multimediawidgets xml
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET    = toxgui
+TARGET    = qtox
 TEMPLATE  = app
 FORMS    += widget.ui
 CONFIG   += c++11
@@ -40,7 +40,7 @@ INSTALLS += target
 
 INCLUDEPATH += libs/include
 win32 {
-    LIBS += $$PWD/libs/lib/libtoxav.a $$PWD/libs/lib/libopus.a $$PWD/libs/lib/libvpx.a $$PWD/libs/lib/libtoxcore.a -lws2_32 $$PWD/libs/lib/libsodium.a -lpthread
+    LIBS += $$PWD/libs/lib/libtoxav.a $$PWD/libs/lib/libopus.a $$PWD/libs/lib/libvpx.a $$PWD/libs/lib/libtoxcore.a -lws2_32 $$PWD/libs/lib/libsodium.a -lpthread -liphlpapi
 } else {
     LIBS += -L$$PWD/libs/lib/ -ltoxcore -ltoxav -lsodium -lvpx
 }
@@ -83,7 +83,8 @@ HEADERS  += widget/form/addfriendform.h \
     widget/videosurface.h \
     widget/camera.h \
     widget/netcamview.h \
-    widget/tool/clickablelabel.h
+    widget/tool/clickablelabel.h \
+    smileypack.h
 
 SOURCES += \
     widget/form/addfriendform.cpp \
@@ -115,4 +116,5 @@ SOURCES += \
     widget/videosurface.cpp \
     widget/camera.cpp \
     widget/netcamview.cpp \
-    widget/tool/clickablelabel.cpp
+    widget/tool/clickablelabel.cpp \
+    smileypack.cpp
